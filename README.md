@@ -1,8 +1,8 @@
-#Vehículo Equipado con HC05: Avances Tecnológicos en Acción
+# Vehículo Equipado con HC05: Avances Tecnológicos en Acción
 
 Nuestro robot te asombrará con su habilidad para realizar tareas avanzadas de manera autónoma, brindando soluciones prácticas para desafíos del mundo real.
 
-##Componentes de Hardware
+## Componentes de Hardware
 
 Este robot presenta una configuración de 4 ruedas, logrando una base sólida y estable. Sus capacidades son impulsadas por una placa Arduino UNO R3, respaldada por un módulo HC05 que permite su control vía dispositivos móviles. 
 ###
