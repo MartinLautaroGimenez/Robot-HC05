@@ -1,6 +1,6 @@
-# Vehículo Equipado con HC05: Avances Tecnológicos en Acción
+# Vehículo Equipado con HC05
 
-Nuestro robot te asombrará con su habilidad para realizar tareas avanzadas de manera autónoma, brindando soluciones prácticas para desafíos del mundo real.
+Este robot te asombrará con su habilidad para realizar tareas avanzadas de manera autónoma, brindando soluciones prácticas para desafíos del mundo real.
 
 ## Componentes de Hardware
 
