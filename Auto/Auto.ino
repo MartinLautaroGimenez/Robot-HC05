@@ -47,7 +47,7 @@ void setup() {
   analogWrite(ENB, 225);
 }
 
-void loop() {
+void loop() { ultrasonido()
   //Chequea si se le envia algun dato
   if (bluetooth.available()) {
     char command = bluetooth.read();
@@ -187,6 +187,7 @@ void para() {
   digitalWrite(motorB_1, LOW);
   digitalWrite(motorB_2, LOW);
   comprobarestadomatriz();
+  ultrasonido();
 }
 
 void carafeliz() {
@@ -229,7 +230,7 @@ void pacman() {
 void ultrasonido(){
   long t; //timepo que demora en llegar el eco
   long d; //distancia en centimetros
-
+  Serial.println(d);
   digitalWrite(Trigger, HIGH);
   delayMicroseconds(10);          //Enviamos un pulso de 10us
   digitalWrite(Trigger, LOW);
