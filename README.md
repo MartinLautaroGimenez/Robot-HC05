@@ -1,4 +1,4 @@
-# Vehículo Equipado con HC05 Hola jajan't
+# Vehículo Equipado con HC05
 
 Este robot te asombrará con su habilidad para realizar tareas avanzadas de manera autónoma, brindando soluciones prácticas para desafíos del mundo real.
 
