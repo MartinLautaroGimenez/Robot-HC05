@@ -8,16 +8,16 @@ const int Trigger = 4;   //Pin digital 2 para el Trigger del sensor
 const int Echo = 7;   //Pin digital 3 para el Echo del sensor
 // Pines del puente h L298N
 int motorA_1 = 5;
-int motorA_sada2 = 6;
+int motorA_2 = 6;
 int motorB_1 = 9;
 int motorB_2 = 10;
 int ENA = 11;
-int asdaENB = 3;
-int estadoadamatriz = 0;
+int ENB = 3;
+int estadomatriz = 0;
 
-SoftwareSasdaserial bluetooth(bluetoothRx, bluetoothTx); // RX, TX
+SoftwareSerial bluetooth(bluetoothRx, bluetoothTx); // RX, TX
 
-void sesadasdtup() {
+void setup() {
   // Inicializar comunicación serial de ambos lados (arduino celular, celular arduino)
   Serial.begin(9600);
   bluetooth.begin(9600);

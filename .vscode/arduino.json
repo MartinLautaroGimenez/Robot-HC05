@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:uno",
-    "programmer": "avrisp",
+    "programmer": "avrispmkii",
     "port": "COM5",
     "sketch": "Auto\\Auto.ino"
 }
