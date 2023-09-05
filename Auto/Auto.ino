@@ -47,7 +47,7 @@ void setup() {
   analogWrite(ENB, 225);
 }
 
-void loop() { ultrasonido()
+void loop() { ultrasonido();
   //Chequea si se le envia algun dato
   if (bluetooth.available()) {
     char command = bluetooth.read();
@@ -230,13 +230,13 @@ void pacman() {
 void ultrasonido(){
   long t; //timepo que demora en llegar el eco
   long d; //distancia en centimetros
-  Serial.println(d);
   digitalWrite(Trigger, HIGH);
   delayMicroseconds(10);          //Enviamos un pulso de 10us
   digitalWrite(Trigger, LOW);
   
   t = pulseIn(Echo, HIGH); //obtenemos el ancho del pulso
   d = t/59;             //escalamos el tiempo a una distancia en cm
+    Serial.println(d);
   if (d <= 5){
     digitalWrite(A0, HIGH);
     delay(100);
