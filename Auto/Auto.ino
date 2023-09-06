@@ -278,5 +278,3 @@ void comprobarestadomatriz() {
             lc.clearDisplay(0);
     }
 }
-
-
