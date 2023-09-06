@@ -11,3 +11,8 @@ Para la gestión de sus motores, el robot incorpora un puente H L298, asegurando
 La alimentación se sustenta en 3 celdas 18650, proporcionando la potencia necesaria. Una matriz 8x8 habilita la comunicación fluida, mientras que 4 LEDs blancos cumplen la función de luces delanteras y traseras, optimizando su visibilidad. Las 4 resistencias de 180Ω regulan la intensidad lumínica de los LEDs.
 ###
 Para ensamblar estos componentes con precisión, se utiliza cinta de doble faz. La estructura física se sustenta en una base adaptable, con opciones de materiales como madera, acrílico, plástico y más.
+
+## Colaboradores
+
+- Mario Papetti (https://github.com/mario-dango): Contribuyó significativamente en todas las etapas del proyecto, incluyendo la programación, las conexiones de hardware y la documentación.
+--
