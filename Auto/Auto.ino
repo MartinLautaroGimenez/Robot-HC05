@@ -47,7 +47,7 @@ void setup() {
   analogWrite(ENB, 225);
 }
 
-void loop() { ultrasonido();
+void loop() {
   //Chequea si se le envia algun dato
   if (bluetooth.available()) {
     char command = bluetooth.read();
@@ -187,7 +187,6 @@ void para() {
   digitalWrite(motorB_1, LOW);
   digitalWrite(motorB_2, LOW);
   comprobarestadomatriz();
-  ultrasonido();
 }
 
 void carafeliz() {
@@ -237,17 +236,6 @@ void ultrasonido(){
   t = pulseIn(Echo, HIGH); //obtenemos el ancho del pulso
   d = t/59;             //escalamos el tiempo a una distancia en cm
   if (d <= 5){
-    digitalWrite(A0, HIGH);
-    delay(100);
-    digitalWrite(A0, LOW);
-    delay(100);
-    digitalWrite(A0, HIGH);
-    delay(100);
-    digitalWrite(A0, LOW);
-    delay(1500);
-    atras();
-    delay(500);
-    para();
   }
 }
 void guineizquierdo(){
