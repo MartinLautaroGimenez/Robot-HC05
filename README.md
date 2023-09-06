@@ -15,4 +15,3 @@ Para ensamblar estos componentes con precisión, se utiliza cinta de doble faz. 
 ## Colaboradores
 
 - Mario Papetti (https://github.com/mario-dango): Contribuyó significativamente en todas las etapas del proyecto, incluyendo la programación, las conexiones de hardware y la documentación.
---
