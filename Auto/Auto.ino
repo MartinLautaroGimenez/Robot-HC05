@@ -4,21 +4,23 @@ LedControl lc = LedControl(13, 8, 12, 1); // Crea el objeto LedControl
 // Pines del Bluetooth HC-05
 #define bluetoothTx 1
 #define bluetoothRx 0
-const int Trigger = 4;   //Pin digital 2 para el Trigger del sensor
-const int Echo = 7;   //Pin digital 3 para el Echo del sensor
+const int Trigger = 4;   //Pin digital 2 para el Trigger del sensor de ultrasonido
+const int Echo = 7;   //Pin digital 3 para el Echo del sensor de ultrasonido
 // Pines del puente h L298N
 int motorA_1 = 5;
 int motorA_2 = 6;
 int motorB_1 = 9;
 int motorB_2 = 10;
+//Pines control de velociades
 int ENA = 11;
 int ENB = 3;
+//Variable para comprobar cuando el robot gira en cualquier sentido
 int estadomatriz = 0;
-
+//Define los pines RX, y TX del modulo HC-05
 SoftwareSerial bluetooth(bluetoothRx, bluetoothTx); // RX, TX
 
 void setup() {
-  // Inicializar comunicación serial de ambos lados (arduino celular, celular arduino)
+  // Inicializar comunicación serial de ambos lados
   Serial.begin(9600);
   bluetooth.begin(9600);
   
@@ -29,33 +31,34 @@ void setup() {
   pinMode(motorB_2, OUTPUT);
   pinMode(ENA, OUTPUT);
   pinMode(ENB, OUTPUT);
-  //Leds y buzzer
+  // Configurar pines de los leds y del buzzer como salidas
   pinMode(A0, OUTPUT);
   pinMode(A1, OUTPUT);
   pinMode(A2, OUTPUT);
   pinMode(A3, OUTPUT);
   pinMode(A4, OUTPUT);
-  //Configuración matris led
+  // Configuración matris led
   lc.shutdown(0, false); // Inicializa la matriz de LED
   lc.setIntensity(0, 10); // Ajusta la intensidad del brillo (puedes modificar este valor según tus preferencias)
   lc.clearDisplay(0); // Limpia la matriz antes de comenzar
-  //ultrasonido  
-  pinMode(Trigger, OUTPUT); //pin como salida
-  pinMode(Echo, INPUT);  //pin como entrada
-  digitalWrite(Trigger, LOW);//Inicializamos el pin con 0
+  // Configuración del sensor de ultrasonido
+  pinMode(Trigger, OUTPUT); // Define el pin Trigger como salida
+  pinMode(Echo, INPUT);  // Define el pin Echo como entrada
+  digitalWrite(Trigger, LOW);// Inicializamos el pin con valor 0
+  // Iniciar con velocidad de motores al máximo
   analogWrite(ENA, 225);
   analogWrite(ENB, 225);
 }
 
 void loop() {
-  //Chequea si se le envia algun dato
+  // Chequea si se le envia algun dato
   if (bluetooth.available()) {
     char command = bluetooth.read();
     executeCommand(command);
   }
 }
 
-void executeCommand(char command) {    //Cadena de comandos
+void executeCommand(char command) {
   switch (command) { 
     case 'F':             //Si el modulo Bluetooth HC-05 recibe un "F" 
       adelante();        //Va a ejecutar la función "Adelante"
@@ -88,7 +91,7 @@ void executeCommand(char command) {    //Cadena de comandos
       digitalWrite(A1, LOW);
       digitalWrite(A2, LOW);
       break;
-    case 'X':
+    case 'X':                 // Cuando el módulo reciba una 'X' va a ejecutar la función Pacman()
       pacman();
       break;
     case 'x':
@@ -102,7 +105,7 @@ void executeCommand(char command) {    //Cadena de comandos
       digitalWrite(A3, LOW);
       digitalWrite(A4, LOW);
     case '1':
-      analogWrite(ENA, 130);
+      analogWrite(ENA, 130);   //Cuando el módulo recia un 1 va a ajustar la velocidad a 130
       analogWrite(ENB, 130);
       break;
     case '2':
@@ -201,11 +204,11 @@ void carafeliz() {
 0x42, 
 0x81,
   };
-  lc.clearDisplay(0);
+  lc.clearDisplay(0); // Vaciar la matris
   for (int row = 0; row < 8; row++) {
   lc.setRow(0, row, Triste[row]);
   }
-  estadomatriz = 1;
+  estadomatriz = 1; //Definir la variable estadomatriz como 1
 }
 
 void pacman() {
@@ -220,31 +223,31 @@ void pacman() {
 0x3c, 
 0x00,
   };
-  lc.clearDisplay(0);
+  lc.clearDisplay(0); // Vaciar la matris
   for (int row = 0; row < 8; row++) {
   lc.setRow(0, row, Feliz[row]);
   }
-  estadomatriz = 2;
-}
+  estadomatriz = 2; //Definir la variable estadomatriz como 1
+} 
 void ultrasonido(){
   long t; //timepo que demora en llegar el eco
   long d; //distancia en centimetros
   digitalWrite(Trigger, HIGH);
-  delayMicroseconds(10);          //Enviamos un pulso de 10us
+  delayMicroseconds(10); //Enviamos un pulso de 10us
   digitalWrite(Trigger, LOW);
   
   t = pulseIn(Echo, HIGH); //obtenemos el ancho del pulso
   d = t/59;             //escalamos el tiempo a una distancia en cm
-  if (d <= 5){
-    digitalWrite(A0, HIGH);
+  if (d <= 5){ 
+    digitalWrite(A0, HIGH); //Encender buzzer
     delay(100);
-    digitalWrite(A0, LOW);
+    digitalWrite(A0, LOW); //Apagar buzzer
     delay(100);
-    digitalWrite(A0, HIGH);
+    digitalWrite(A0, HIGH); //Encender buzzer
     delay(100);
-    digitalWrite(A0, LOW);
+    digitalWrite(A0, LOW); //Apagar buzzer 
     delay(1500);
-    atras();
+    atras(); //Ejecutar la función atras por 500ms
     delay(500);
     para();
   }
