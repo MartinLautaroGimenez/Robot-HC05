@@ -1,4 +1,4 @@
-#include <SoftwareSerial.h>
+#include <SoftwareSerial.h> //Incluir la biblioteca SoftwareSerial
 #include "LedControl.h" // Incluye la biblioteca LedControl
 LedControl lc = LedControl(13, 8, 12, 1); // Crea el objeto LedControl
 // Pines del Bluetooth HC-05
@@ -66,7 +66,7 @@ void executeCommand(char command) {
     case 'B':             //Si el modulo Bluetooth HC-05 recibe un "B" 
       atras();            //Va a ejecutar la función "Atras"
       break;              //Y luego va a romper la cadena para no hacer todas las funciones
-    case 'R': 
+    case 'R':  
       derecha();
       guinederecho();
       break;
