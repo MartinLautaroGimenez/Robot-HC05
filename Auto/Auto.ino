@@ -105,7 +105,7 @@ void executeCommand(char command) {
       digitalWrite(A3, LOW);
       digitalWrite(A4, LOW);
     case '1':
-      analogWrite(ENA, 130);   //Cuando el módulo recia un 1 va a ajustar la velocidad a 130
+      analogWrite(ENA, 130);   //Cuando el módulo reciba un 1 va a ajustar la velocidad a 130
       analogWrite(ENB, 130);
       break;
     case '2':
