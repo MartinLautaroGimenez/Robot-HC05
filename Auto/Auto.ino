@@ -12,8 +12,8 @@ int motorA_2 = 6;
 int motorB_1 = 9;
 int motorB_2 = 10;
 //Pines control de velociades
-int ENA = 11;
-int ENB = 3;
+int ENA = 3;
+int ENB = 11;
 //Variable para comprobar cuando el robot gira en cualquier sentido
 int estadomatriz = 0;
 //Define los pines RX, y TX del modulo HC-05
