@@ -2,18 +2,18 @@
 #include "LedControl.h" // Incluye la biblioteca LedControl
 LedControl lc = LedControl(13, 8, 12, 1); // Crea el objeto LedControl
 // Pines del Bluetooth HC-05
-#define bluetoothTx 1
-#define bluetoothRx 0
+#define bluetoothTx D6
+#define bluetoothRx D7
 const int Trigger = 4;   //Pin digital 2 para el Trigger del sensor de ultrasonido
 const int Echo = 7;   //Pin digital 3 para el Echo del sensor de ultrasonido
 // Pines del puente h L298N
-int motorA_1 = 5;
-int motorA_2 = 6;
-int motorB_1 = 9;
-int motorB_2 = 10;
+int motorA_1 = D4;
+int motorA_2 = D3;
+int motorB_1 = D2;
+int motorB_2 = D1;
 //Pines control de velociades
-int ENA = 3;
-int ENB = 11;
+int ENA = D0;
+int ENB = D5;
 //Variable para comprobar cuando el robot gira en cualquier sentido
 int estadomatriz = 0;
 //Define los pines RX, y TX del modulo HC-05
@@ -33,10 +33,6 @@ void setup() {
   pinMode(ENB, OUTPUT);
   // Configurar pines de los leds y del buzzer como salidas
   pinMode(A0, OUTPUT);
-  pinMode(A1, OUTPUT);
-  pinMode(A2, OUTPUT);
-  pinMode(A3, OUTPUT);
-  pinMode(A4, OUTPUT);
   // Configuración matris led
   lc.shutdown(0, false); // Inicializa la matriz de LED
   lc.setIntensity(0, 10); // Ajusta la intensidad del brillo (puedes modificar este valor según tus preferencias)
@@ -84,12 +80,8 @@ void executeCommand(char command) {
       digitalWrite(A0, LOW);
       break;
     case 'U':
-      digitalWrite(A1, HIGH);
-      digitalWrite(A2, HIGH);
       break;
     case 'u':
-      digitalWrite(A1, LOW);
-      digitalWrite(A2, LOW);
       break;
     case 'X':                 // Cuando el módulo reciba una 'X' va a ejecutar la función Pacman()
       pacman();
@@ -98,12 +90,8 @@ void executeCommand(char command) {
       carafeliz();
       break;
     case 'W':
-      digitalWrite(A3, HIGH);
-      digitalWrite(A4, HIGH);
       break;
     case 'w':
-      digitalWrite(A3, LOW);
-      digitalWrite(A4, LOW);
     case '1':
       analogWrite(ENA, 130);   //Cuando el módulo reciba un 1 va a ajustar la velocidad a 130
       analogWrite(ENB, 130);
