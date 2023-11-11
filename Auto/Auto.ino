@@ -12,8 +12,13 @@ int motorA_2 = D3;
 int motorB_1 = D2;
 int motorB_2 = D1;
 //Pines control de velociades
+<<<<<<< HEAD
 int ENA = D0;
 int ENB = D5;
+=======
+int ENA = 11;
+int ENB = 3;
+>>>>>>> parent of cbe8883 (Se actualizaron algunos pines de control de velocidad)
 //Variable para comprobar cuando el robot gira en cualquier sentido
 int estadomatriz = 0;
 //Define los pines RX, y TX del modulo HC-05
