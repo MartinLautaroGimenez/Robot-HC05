@@ -4,8 +4,6 @@ LedControl lc = LedControl(13, 8, 12, 1); // Crea el objeto LedControl
 // Pines del Bluetooth HC-05
 #define bluetoothTx 7
 #define bluetoothRx 2
-const int Trigger = 4;   //Pin digital 2 para el Trigger del sensor de ultrasonido
-const int Echo = 7;   //Pin digital 3 para el Echo del sensor de ultrasonido
 // Pines del puente h L298N
 int motorA_1 = 5;
 int motorA_2 = 6;
@@ -209,29 +207,6 @@ void pacman() {
   }
   estadomatriz = 2; //Definir la variable estadomatriz como 1
 } 
-void ultrasonido(){
-  long t; //timepo que demora en llegar el eco
-  long d; //distancia en centimetros
-  digitalWrite(Trigger, HIGH);
-  delayMicroseconds(10); //Enviamos un pulso de 10us
-  digitalWrite(Trigger, LOW);
-  
-  t = pulseIn(Echo, HIGH); //obtenemos el ancho del pulso
-  d = t/59;             //escalamos el tiempo a una distancia en cm
-  if (d <= 5){ 
-    digitalWrite(A0, HIGH); //Encender buzzer
-    delay(100);
-    digitalWrite(A0, LOW); //Apagar buzzer
-    delay(100);
-    digitalWrite(A0, HIGH); //Encender buzzer
-    delay(100);
-    digitalWrite(A0, LOW); //Apagar buzzer 
-    delay(1500);
-    atras(); //Ejecutar la función atras por 500ms
-    delay(500);
-    para();
-  }
-}
 void guineizquierdo(){
   byte Guineizquierdo[8] = {
     0x18, 0x3c, 0x7e, 0x9b, 0x18, 0x18, 0x18, 0x18
