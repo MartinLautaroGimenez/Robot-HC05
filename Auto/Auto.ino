@@ -2,8 +2,8 @@
 #include "LedControl.h" // Incluye la biblioteca LedControl
 LedControl lc = LedControl(13, 8, 12, 1); // Crea el objeto LedControl
 // Pines del Bluetooth HC-05
-#define bluetoothTx 1
-#define bluetoothRx 0
+#define bluetoothTx 7
+#define bluetoothRx 2
 const int Trigger = 4;   //Pin digital 2 para el Trigger del sensor de ultrasonido
 const int Echo = 7;   //Pin digital 3 para el Echo del sensor de ultrasonido
 // Pines del puente h L298N
@@ -12,7 +12,7 @@ int motorA_2 = 6;
 int motorB_1 = 9;
 int motorB_2 = 10;
 //Pines control de velociades
-int ENA = 3;
+int ENA = 3; 
 int ENB = 11;
 //Variable para comprobar cuando el robot gira en cualquier sentido
 int estadomatriz = 0;
@@ -32,11 +32,9 @@ void setup() {
   pinMode(ENA, OUTPUT);
   pinMode(ENB, OUTPUT);
   // Configurar pines de los leds y del buzzer como salidas
-  pinMode(A0, OUTPUT);
-  pinMode(A1, OUTPUT);
-  pinMode(A2, OUTPUT);
-  pinMode(A3, OUTPUT);
+  pinMode(A5, OUTPUT);
   pinMode(A4, OUTPUT);
+  pinMode(A3, OUTPUT);
   // Configuración matris led
   lc.shutdown(0, false); // Inicializa la matriz de LED
   lc.setIntensity(0, 10); // Ajusta la intensidad del brillo (puedes modificar este valor según tus preferencias)
@@ -78,18 +76,16 @@ void executeCommand(char command) {
       para();
       break;
     case 'V':
-      digitalWrite(A0, HIGH);
+      digitalWrite(A3, HIGH);
       break;
     case 'v':
-      digitalWrite(A0, LOW);
+      digitalWrite(A3, LOW);
       break;
     case 'U':
-      digitalWrite(A1, HIGH);
-      digitalWrite(A2, HIGH);
+      digitalWrite(A4, HIGH);
       break;
     case 'u':
-      digitalWrite(A1, LOW);
-      digitalWrite(A2, LOW);
+      digitalWrite(A4, LOW);
       break;
     case 'X':                 // Cuando el módulo reciba una 'X' va a ejecutar la función Pacman()
       pacman();
@@ -98,12 +94,10 @@ void executeCommand(char command) {
       carafeliz();
       break;
     case 'W':
-      digitalWrite(A3, HIGH);
-      digitalWrite(A4, HIGH);
+      digitalWrite(A5, HIGH);
       break;
     case 'w':
-      digitalWrite(A3, LOW);
-      digitalWrite(A4, LOW);
+      digitalWrite(A5, LOW);
     case '1':
       analogWrite(ENA, 130);   //Cuando el módulo reciba un 1 va a ajustar la velocidad a 130
       analogWrite(ENB, 130);
@@ -195,14 +189,7 @@ void para() {
 void carafeliz() {
     // Define happy como su valor
     byte Triste[8] = {
-0x24, 
-0x24, 
-0x24, 
-0x24, 
-0x00, 
-0x3c, 
-0x42, 
-0x81,
+      0x01, 0x02, 0xf4, 0x04, 0x04, 0xf4, 0x02, 0x01
   };
   lc.clearDisplay(0); // Vaciar la matris
   for (int row = 0; row < 8; row++) {
@@ -214,14 +201,7 @@ void carafeliz() {
 void pacman() {
    //Define la variable pacman
     byte Feliz[8] = {
-0x24, 
-0x24, 
-0x24, 
-0x24, 
-0x81,
-0xc3, 
-0x3c, 
-0x00,
+      0x0c, 0x04, 0xf2, 0x02, 0x02, 0xf2, 0x04, 0x0c
   };
   lc.clearDisplay(0); // Vaciar la matris
   for (int row = 0; row < 8; row++) {
@@ -254,7 +234,7 @@ void ultrasonido(){
 }
 void guineizquierdo(){
   byte Guineizquierdo[8] = {
-    0x08, 0x0c, 0x06, 0xff, 0xff, 0x06, 0x0c, 0x08
+    0x18, 0x3c, 0x7e, 0x9b, 0x18, 0x18, 0x18, 0x18
   };
   lc.clearDisplay(0);
   for (int row = 0; row < 8; row++) {
@@ -265,7 +245,7 @@ estadomatriz = 0;
 }
 void guinederecho(){
   byte Guinederecho[8] = {
-    0x10, 0x30, 0x60, 0xff, 0xff, 0x60, 0x30, 0x10
+    0x18, 0x18, 0x18, 0x18, 0xdb, 0x7e, 0x3c, 0x18
   };
   lc.clearDisplay(0);
   for (int row = 0; row < 8; row++) {
